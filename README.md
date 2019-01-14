@@ -1,6 +1,4 @@
-# calc
-User Story: I can add, subtract, multiply and divide two numbers.
-User Story: I can clear the input field with a clear button.
+
 
 # Supported operators
 
@@ -14,28 +12,7 @@ as the C++ programming language and also supports the power operator.
   </tr>
   <tr align="left">
     <td>|</td>
-    <td>Bitwise Inclusive OR</td>
-  </tr>
-  <tr align="left">
-    <td>^</td>
-    <td>Bitwise Exclusive OR</td>
-  </tr>
-  <tr align="left">
-    <td>&</td>
-    <td>Bitwise AND</td>
-  </tr>
-  <tr align="left">
-    <td>~</td>
-    <td>Unary Complement </td>
-  </tr>
-  <tr align="left">
-    <td>&lt;&lt;</td>
-    <td>Shift Left</td>
-  </tr>
-  <tr align="left">
-    <td>&gt;&gt;</td>
-    <td>Shift Right</td>
-  </tr>
+
   <tr align="left">
     <td>+</td>
     <td>Addition</td>
@@ -52,13 +29,6 @@ as the C++ programming language and also supports the power operator.
     <td>/</td>
     <td>Division</td>
   </tr>
-  <tr align="left">
-    <td>%</td>
-    <td>Modulo</td>
-  </tr>
-  <tr align="left">
-    <td>**</td>
-    <td>Raise to power</td>
-  </tr>
+  
 </table>
 
