@@ -2,16 +2,13 @@
 
 # Supported operators
 
-```calculator.hpp``` uses the same operator precedence and associativity
-as the C++ programming language and also supports the power operator.
-
 <table>
   <tr align="center">
     <td><b>Operator</b></td>
     <td><b>Description</b></td>
   </tr>
-  <tr align="left">
-    <td>|</td>
+  
+   
 
   <tr align="left">
     <td>+</td>
