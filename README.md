@@ -1,4 +1,8 @@
 
+# JS Calculator
+Program Calculator with JS 
+by Filatova Vera  
+This code is simple you can comment  
 
 # Supported operators
 
@@ -29,7 +33,3 @@
   
 </table>
 
-# JS Calculator
-Program Calculator with JS 
-by Filatova Vera  
-This code is simple you can comment  
