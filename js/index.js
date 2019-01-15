@@ -1,4 +1,4 @@
-class CalcModel {
+class CalculatorModel {
   constructor(input){
     this._decimalAdded = false;
     this._operators = ['+', '-', 'x', '÷'];
@@ -37,7 +37,7 @@ class CalcModel {
   }
 }
 
-class CalcPresenter {
+class CalculatorPresenter {
 
   constructor(inputScreen){
     this._inputScreen = inputScreen;
