@@ -1,111 +1,155 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-#calculator {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-
+/* Basic reset */
 * {
-  margin: 0;
-  padding: 0;
-  /* Padding and border are included in the element's total width and height */
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
-  font-size: 14px;
-  font-weight: bold;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	
+	/* Better text styling */
+	font: bold 14px Arial, sans-serif;
 }
 
+
+
+/* A nice BG gradient */
 html {
-  height: 100%;
-  background: #8eefa7;
-  
-  background-size: cover;
+	height: 100%;
+	background: #a8eab9;
+    background-size: cover;
 }
 
+/* Using box shadows to create 3D effects */
 #calculator {
-  width: 325px;
-  height: auto;
-  padding: 20px 0 10px 25px;
-  background: #888989;
-  
-  border-radius: 3px;
-  /* Using box shadows to create 3D effects */
-  box-shadow: 0px 5px rgba(0, 0, 0, 0.2), 0px 10px 15px rgba(0, 0, 0, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  /* Clear Floats to make sure #calculator includes them correctly */
+	width: 325px;
+	height: auto;
+	
+	margin: 180px auto;
+	padding: 20px 20px 9px;
+	
+	background: #9dd2ea;
+	background: linear-gradient(#9dd2ea, #8bceec);
+	border-radius: 3px;
+	box-shadow: 0px 4px #009de4, 0px 10px 15px rgba(0, 0, 0, 0.2);
 }
-#calculator #screen {
-  float: left;
-  overflow: hidden;
-  height: 40px;
-  width: 205px;
-  padding: 0 10px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-  /* Inset shadow on the screen to create indent */
-  box-shadow: inset 0px 4px rgba(0, 0, 0, 0.4);
-  /* Typography */
-  font-size: 17px;
-  line-height: 40px;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  text-align: right;
-  letter-spacing: 1px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+
+/* Top portion */
+.top span.clear {
+	float: left;
 }
-#calculator .keys,
-#calculator .top {
-  overflow: hidden;
+
+/* Inset shadow on the screen to create indent */
+.top .screen {
+	height: 40px;
+	width: 212px;
+	
+	float: right;
+	
+	padding: 0 10px;
+	
+	background: rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
+	
+	/* Typography */
+	font-size: 17px;
+	line-height: 40px;
+	color: white;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	text-align: right;
+	letter-spacing: 1px;
 }
-#calculator button {
-  border-style: none;
-  float: left;
-  /* Specifies the type of cursor to be displayed when pointing on an element. */
-  cursor: pointer;
-  width: 65px;
-  height: 35px;
-  background: white;
-  border-radius: 3px;
-  box-shadow: 0px 4px rgba(0, 0, 0, 0.4);
-  margin: 0 5px 10px 0;
-  color: #888;
-  line-height: 35px;
+
+/* Clear floats */
+.keys, .top {overflow: hidden;}
+
+/* Applying same to the keys */
+.keys span, .top span.clear {
+	float: left;
+	position: relative;
+	top: 0;
+	
+	cursor: pointer;
+	
+	width: 66px;
+	height: 36px;
+	
+	background: white;
+	border-radius: 3px;
+	box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+	
+	margin: 0 7px 11px 0;
+	
+	color: #888;
+	line-height: 36px;
+	text-align: center;
+	
+	/* prevent selection of text inside keys */
+	user-select: none;
+	
+	/* Smoothing out hover and active states using css3 transitions */
+	transition: all 0.2s ease;
+}
+
+/* Remove right margins from operator keys */
+/* style different type of keys (operators/evaluate/clear) differently */
+.keys span.operator {
+	background: #FFF0F5;
+	margin-right: 0;
+}
+
+.keys span.eval {
+	background: #f1ff92;
+	box-shadow: 0px 4px #9da853;
+	color: #888e5f;
+}
+
+.top span.clear {
+	background: #ff9fa8;
+	box-shadow: 0px 4px #ff7c87;
+	color: white;
+}
+
+/* Some hover effects */
+.keys span:hover {
+	background: #9c89f6;
+	box-shadow: 0px 4px #6b54d3;
+	color: white;
+}
+
+.keys span.eval:hover {
+	background: #abb850;
+	box-shadow: 0px 4px #717a33;
+	color: #ffffff;
+}
+
+.top span.clear:hover {
+	background: #f68991;
+	box-shadow: 0px 4px #d3545d;
+	color: white;
+}
+
+/* Simulating "pressed" effect on active state of the keys by removing the box-shadow and moving the keys down a bit */
+.keys span:active {
+	box-shadow: 0px 0px #6b54d3;
+	top: 4px;
+}
+
+.keys span.eval:active {
+	box-shadow: 0px 0px #717a33;
+	top: 4px;
+}
+
+.top span.clear:active {
+	top: 4px;
+	box-shadow: 0px 0px #d3545d;
+}
+
+h1 {
   text-align: center;
-  /* prevent selection of text inside keys */
-  user-select: none;
-  /* Transitions allows you to change property values smoothly  */
-  transition: all 0.2s ease;
+  padding-bottom: 30px;
 }
-#calculator button:hover {
-  background: #c8d7df;
-  color: white;
-}
-#calculator button:active {
-  box-shadow: inset 0px 2px rgba(0, 0, 0, 0.2);
-  border: 2px solid rgba(0, 0, 0, 0.3);
-}
-#calculator button#clear {
-  background: #c93b48;
-  color: white;
-}
-#calculator button#clear:hover {
-  background: #ac2431;
-}
-#calculator button.operator {
-  background: #fff0f5;
-}
-#calculator button.operator:hover {
-  background: gray;
-}
-#calculator button.eval {
-  background: #e99563;
-  color: #888e5f;
-}
-#calculator button.eval:hover {
-  background: #d7824f;
-  color: white;
+
+a.link {
+  text-decoration: none;
+  font: normal 14px Helvetica, Arial, sans-serif;
+  color: green;
 }

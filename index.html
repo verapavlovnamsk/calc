@@ -3,36 +3,48 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Calculator with JS</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Javascript and CSS3 Calculator</title>
+  
+<link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
- <div id="calculator">
-  <!-- Screen and clear key -->
-  <div class="top">
-    <button id="clear" onclick="presenter.clearScreen()">C</button>
-    <div id="screen"></div>
-  </div>
-  <div class="keys">
-    <!-- operators and other keys -->
-    <button onclick="presenter.addNumeric(event)">7</button>
-    <button onclick="presenter.addNumeric(event)">8</button>
-    <button onclick="presenter.addNumeric(event)">9</button>
-    <button class="operator" onclick="presenter.addOperator(event)">+</button>
-    <button onclick="presenter.addNumeric(event)">4</button>
-    <button onclick="presenter.addNumeric(event)">5</button>
-    <button onclick="presenter.addNumeric(event)">6</button>
-    <button class="operator" onclick="presenter.addOperator(event)">-</button>
-    <button onclick="presenter.addNumeric(event)">1</button>
-    <button onclick="presenter.addNumeric(event)">2</button>
-    <button onclick="presenter.addNumeric(event)">3</button>
-    <button class="operator" onclick="presenter.addOperator(event)">÷</button>
-    <button onclick="presenter.addNumeric(event)">0</button>
-    <button onclick="presenter.addDecimal()">.</button>
-    <button class="eval" onclick="presenter.evaulateExpression()">=</button>
-    <button class="operator" onclick="presenter.addOperator(event)">x</button>
-  </div>
+
+  <div id="calculator">
+	<!-- Screen and clear key -->
+	<div class="top">
+		<span class="clear">C</span>
+		<div class="screen"></div>
+	</div>
+	
+	<div class="keys">
+		<!-- operators and other keys -->
+		<span>7</span>
+		<span>8</span>
+		<span>9</span>
+		<span class="operator">+</span>
+		<span>4</span>
+		<span>5</span>
+		<span>6</span>
+		<span class="operator">-</span>
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+		<span class="operator">/</span>
+		<span>0</span>
+		<span>.</span>
+		<span class="eval">=</span>
+		<span class="operator">x</span>
+	</div>
 </div>
-<script  src="js/index.js"></script>
+
+
+    <script  src="js/index.js"></script>
+
+
+
+
 </body>
+
 </html>
