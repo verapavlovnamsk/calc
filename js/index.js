@@ -11,20 +11,7 @@ var _createClass = function () {function defineProperties(target, props) {for (v
     {
       this.setLastNumberToDisplay();
     } }, { key: 'initButtonsEvents', value: function initButtonsEvents()
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {var _this = this;
+ {var _this = this;
       var buttons = document.querySelectorAll('.btn');
       buttons.forEach(function (btn) {
         btn.addEventListener('click', function (e) {
