@@ -3,42 +3,47 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Javascript and CSS3 Calculator</title>
+  <title>Calculator - JavaScript OOP study</title>
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
   
-<link rel="stylesheet" href="css/style.css">
+  
+      <link rel="stylesheet" href="css/style.css">
 
+  
 </head>
 
 <body>
 
-  <div id="calculator">
-	<!-- Screen and clear key -->
-	<div class="top">
-		<span class="clear">C</span>
-		<div class="screen"></div>
-	</div>
-	
-	<div class="keys">
-		<!-- operators and other keys -->
-		<span>7</span>
-		<span>8</span>
-		<span>9</span>
-		<span class="operator">+</span>
-		<span>4</span>
-		<span>5</span>
-		<span>6</span>
-		<span class="operator">-</span>
-		<span>1</span>
-		<span>2</span>
-		<span>3</span>
-		<span class="operator">/</span>
-		<span>0</span>
-		<span>.</span>
-		<span class="eval">=</span>
-		<span class="operator">x</span>
-	</div>
-</div>
-
+  <body>
+  <div class="calculator">
+    <div class="screen">
+      <h1 id="output"></h1>
+    </div>
+    <div class="buttons">
+      <button class="btn" id="btn-ac">AC</button>
+      <button class="btn" id="btn-ce">CE</button>
+      <button class="btn" id="btn-divide">/</button>
+      <button class="btn" id="btn-multiply">*</button>
+      <button class="btn" id="btn-7">7</button>
+      <button class="btn" id="btn-8">8</button>
+      <button class="btn" id="btn-9">9</button>
+      <button class="btn" id="btn-plus">+</button>
+      <button class="btn" id="btn-4">4</button>
+      <button class="btn" id="btn-5">5</button>
+      <button class="btn" id="btn-6">6</button>
+      <button class="btn" id="btn-dot">.</button>
+      <button class="btn" id="btn-1">1</button>
+      <button class="btn" id="btn-2">2</button>
+      <button class="btn" id="btn-3">3</button>
+      <button class="btn" id="btn-minus">-</button>
+      <button class="btn" id="btn-0">0</button>
+      <button class="btn" id="btn-result">=</button>
+    </div>
+  </div>
+</body>
+  
+  
 
     <script  src="js/index.js"></script>
 

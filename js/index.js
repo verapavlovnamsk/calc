@@ -1,86 +1,199 @@
+var _createClass = function () {function defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}return function (Constructor, protoProps, staticProps) {if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;};}();function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}var CalcController = function () {
+  function CalcController() {_classCallCheck(this, CalcController);
+    this._lastOperator = '';
+    this._lastNumber = '';
+    this._displayCalcEl = document.querySelector('#output');
+    this._operation = [];
+    this.initButtonsEvents();
+    this.initialize();
+  }_createClass(CalcController, [{ key: 'initialize', value: function initialize()
 
-// Get all the keys from document
-var keys = document.querySelectorAll('#calculator span');
-var operators = ['+', '-', 'x', ':'];
-var decimalAdded = false;
+    {
+      this.setLastNumberToDisplay();
+    } }, { key: 'initButtonsEvents', value: function initButtonsEvents()
 
-// Add onclick event to all the keys and perform operations
-for(var i = 0; i < keys.length; i++) {
-	keys[i].onclick = function(e) {
-		// Get the input and button values
-		var input = document.querySelector('.screen');
-		var inputVal = input.innerHTML;
-		var btnVal = this.innerHTML;
-		
-		// Now, just append the key values (btnValue) to the input string and finally use javascript's eval function to get the result
-		// If clear key is pressed, erase everything
-		if(btnVal == 'C') {
-			input.innerHTML = '';
-			decimalAdded = false;
-		}
-		
-		// If eval key is pressed, calculate and display the result
-		else if(btnVal == '=') {
-			var equation = inputVal;
-			var lastChar = equation[equation.length - 1];
-			
-			// Replace all instances of x and ÷ with * and / respectively. This can be done easily using regex and the 'g' tag which will replace all instances of the matched character/substring
-			equation = equation.replace(/x/g, '*').replace(/:/g, '/');
-			
-			// Final thing left to do is checking the last character of the equation. If it's an operator or a decimal, remove it
-			if(operators.indexOf(lastChar) > -1 || lastChar == '.')
-				equation = equation.replace(/.$/, '');
-			
-			if(equation)
-				input.innerHTML = eval(equation);
-				
-			decimalAdded = false;
-		}
-		
-		// Basic functionality of the calculator is complete. But there are some problems like 
-		// 1. No two operators should be added consecutively.
-		// 2. The equation shouldn't start from an operator except minus
-		// 3. not more than 1 decimal should be there in a number
-		
-		// We'll fix these issues using some simple checks
-		
-		// indexOf works only in IE9+
-		else if(operators.indexOf(btnVal) > -1) {
-			// Operator is clicked
-			// Get the last character from the equation
-			var lastChar = inputVal[inputVal.length - 1];
-			
-			// Only add operator if input is not empty and there is no operator at the last
-			if(inputVal != '' && operators.indexOf(lastChar) == -1) 
-				input.innerHTML += btnVal;
-			
-			// Allow minus if the string is empty
-			else if(inputVal == '' && btnVal == '-') 
-				input.innerHTML += btnVal;
-			
-			// Replace the last operator (if exists) with the newly pressed operator
-			if(operators.indexOf(lastChar) > -1 && inputVal.length > 1) {
-				// Here, '.' matches any character while $ denotes the end of string, so anything (will be an operator in this case) at the end of string will get replaced by new operator
-				input.innerHTML = inputVal.replace(/.$/, btnVal);
-			}
-			
-			decimalAdded =false;
-		}
-		
-		// Now only the decimal problem is left. We can solve it easily using a flag 'decimalAdded' which we'll set once the decimal is added and prevent more decimals to be added once it's set. It will be reset when an operator, eval or clear key is pressed.
-		else if(btnVal == '.') {
-			if(!decimalAdded) {
-				input.innerHTML += btnVal;
-				decimalAdded = true;
-			}
-		}
-		
-		// if any other key is pressed, just append it
-		else {
-			input.innerHTML += btnVal;
-		}
-		
-		// prevent page jumps
-		e.preventDefault();
-	} 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+    {var _this = this;
+      var buttons = document.querySelectorAll('.btn');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          var textBtn = btn.id.replace('btn-', '');
+          _this.execBtn(textBtn);
+        });
+      });
+    } }, { key: 'execBtn', value: function execBtn(
+
+    value) {
+      switch (value) {
+        case 'ac':
+          this.allClear();
+          break;
+        case 'ce':
+          this.cancelEntry();
+          break;
+        case 'plus':
+          this.addOperation('+');
+          break;
+        case 'minus':
+          this.addOperation('-');
+          break;
+        case 'multiply':
+          this.addOperation('*');
+          break;
+        case 'divide':
+          this.addOperation('/');
+          break;
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+          this.addOperation(parseInt(value));
+          break;
+        case 'dot':
+          this.addDot(value);
+          break;
+        case 'result':
+          this.calc();
+          break;
+        default:
+          this.setError();
+          break;}
+
+    } }, { key: 'allClear', value: function allClear()
+
+    {
+      this._operation = [];
+      this._lastNumber = '';
+      this._lastOperator = '';
+      this.setLastNumberToDisplay();
+    } }, { key: 'cancelEntry', value: function cancelEntry()
+
+    {
+      this._operation.pop();
+      this.setLastNumberToDisplay();
+    } }, { key: 'setError', value: function setError()
+
+    {
+      this.displayCalc = 'ERROR';
+    } }, { key: 'addDot', value: function addDot()
+
+    {
+      var lastOperation = this.getLastOperation();
+      if (typeof lastOperation === 'string' && lastOperation.split('').indexOf('.') > -1) return;
+      if (this.isOperator(lastOperation) || !lastOperation) {
+        this.pushOperation('0.');
+      } else {
+        this.setLastOperation(lastOperation.toString() + '.');
+      }
+      this.setLastNumberToDisplay();
+
+    } }, { key: 'setLastOperation', value: function setLastOperation(
+
+    value) {
+      this._operation[this._operation.length - 1] = value;
+    } }, { key: 'getLastOperation', value: function getLastOperation()
+
+    {
+      return this._operation[this._operation.length - 1];
+    } }, { key: 'isOperator', value: function isOperator(
+
+    value) {
+      return ['+', '-', '/', '*'].indexOf(value) > -1;
+    } }, { key: 'pushOperation', value: function pushOperation(
+
+    value) {
+      this._operation.push(value);
+      if (this._operation.length > 3) {
+        this.calc();
+      } else {
+
+      }
+    } }, { key: 'getLastItem', value: function getLastItem()
+
+    {var isOperator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      var lastItem = void 0;
+      for (var i = this._operation.length - 1; i >= 0; i--) {
+        if (this.isOperator(this._operation[i]) == isOperator) {
+          lastItem = this._operation[i];
+          break;
+        }
+      }
+      if (!lastItem) {
+        lastItem = isOperator ? this._lastOperator : this._lastNumber;
+      }
+      return lastItem;
+    } }, { key: 'setLastNumberToDisplay', value: function setLastNumberToDisplay()
+
+    {
+      var lastNumber = this.getLastItem(false);
+      if (!lastNumber) lastNumber = 0;
+      this.displayCalc = lastNumber;
+    } }, { key: 'getResult', value: function getResult()
+
+    {var _this2 = this;
+      try {
+        return eval(this._operation.join(''));
+      } catch (e) {
+        setTimeout(function () {
+          _this2.setError();
+        }, 1);
+      }
+    } }, { key: 'calc', value: function calc()
+
+    {
+      var last = '';
+      this._lastOperator = this.getLastItem();
+      if (this._operation.length < 3) {
+        var firtItem = this._operation[0];
+        this._operation = [firtItem, this._lastOperator, this._lastNumber];
+      }
+      if (this._operation.length > 3) {
+        last = this._operation.pop();
+        this._lastNumber = this.getResult();
+      } else if (this._operation.length == 3) {
+        this._lastNumber = this.getLastItem(false);
+      }
+      var result = this.getResult();
+      this._operation = [result];
+      if (last) this._operation.push(last);
+      this.setLastNumberToDisplay();
+    } }, { key: 'addOperation', value: function addOperation(
+
+    value) {
+      if (isNaN(this.getLastOperation())) {
+        if (this.isOperator(value)) {
+          this.setLastOperation(value);
+        } else {
+          this.pushOperation(value);
+          this.setLastNumberToDisplay();
+        }
+      } else {
+        if (this.isOperator(value)) {
+          this.pushOperation(value);
+        } else {
+          var newValue = this.getLastOperation().toString() + value.toString();
+          this.setLastOperation(newValue);
+          this.setLastNumberToDisplay();
+        }
+      }
+    } }, { key: 'displayCalc', get: function get() {return this._displayCalcEl.innerHTML;}, set: function set(value) {if (value.toString().length > 16) {this.setError();return false;}this._displayCalcEl.innerHTML = value;} }]);return CalcController;}();
+
+
+var calculator = new CalcController();
